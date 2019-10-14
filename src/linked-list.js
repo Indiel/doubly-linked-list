@@ -8,7 +8,7 @@ class LinkedList {
     }
 
     append(data) {
-        var node = new Node(data);
+        let node = new Node(data);
 
         if (!this.length) {
             this._head = node;
@@ -64,7 +64,7 @@ class LinkedList {
     }
 
     insertAt(index, data) {
-        var newNode = new Node(data);
+        let newNode = new Node(data);
 
         if (this.length === 0) {
             this._head = newNode;
@@ -79,7 +79,7 @@ class LinkedList {
         }
 
         this.length++;
-        
+
         return this;
     }
 
@@ -96,12 +96,18 @@ class LinkedList {
     }
 
     deleteAt(index) {
-        let node = this.getNeedfulNode(index);
+        if (this.length === 0) {
+            return this;
+        } if (this.length === 1) {
+            this.clear();
+        } else {
+            let node = this.getNeedfulNode(index);
 
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
 
-        this.length--;
+            this.length--;
+        }
 
         return this;
     }
